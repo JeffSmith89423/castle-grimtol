@@ -19,7 +19,7 @@ namespace CastleGrimtol.Game
         }
         public string GetUserInput()
         {
-            System.Console.WriteLine("What would you like to do?\n");
+            System.Console.WriteLine("What would you like to do?");
             string input = Console.ReadLine();
             return input;
         }
@@ -49,7 +49,7 @@ namespace CastleGrimtol.Game
             else
             {
                 System.Console.WriteLine("OK");
-                
+                Reset();
 
             }
 
@@ -89,8 +89,8 @@ namespace CastleGrimtol.Game
             Room roomThree = new Room("Room 3 ", "This is the third room, there are doors to the east and west");
             Room roomFour = new Room("Room 4 ", "This is the fourth room, there are doors to the east and west");
             Room roomFive = new Room("Room 5 ", "This is the fifth room, there is a door to the east north and south choose wisely");
-            Room roomSix = new Room("Certain Death, ", "This is a bottomless pit, you  die after starving in eternal free fall!!");
-            Room roomSeven = new Room("Freedom, ", "This is the exit to the world's lamest maze, you win!");
+            Room roomSix = new Room("LOSER!!!, ", "This is a bottomless pit, you  die after starving in eternal free fall!!");
+            Room roomSeven = new Room("YOU WIN!!, ", "This is the exit to the world's lamest maze!");
 
 
             AddRooms();
