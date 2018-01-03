@@ -20,18 +20,18 @@ namespace CastleGrimtol
 
             while (game.Playing)
             {
-                if (game.CurrentRoom.Name == "LOSER!!!, ")
-                {
-                    game.Lose();
-                }
-                if (game.CurrentRoom.Name == "YOU WIN!!, ")
-                {
-                  game.Lose();
-                }
                 string userChoice = game.GetUserInput().ToLower();
                 string[] userAction = userChoice.Split(' ');
                 Room nextRoom;
                 game.CurrentRoom.Exits.TryGetValue(userAction[0], out nextRoom);
+                if (game.CurrentRoom.Name == "LOSER!!!, ")
+                {
+                    game.End();
+                }
+                if (game.CurrentRoom.Name == "YOU WIN!!, ")
+                {
+                  game.End();
+                }
 
                 if (userAction[0] == "l" || userAction[0] == "look")
                 {

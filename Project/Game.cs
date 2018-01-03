@@ -38,7 +38,7 @@ namespace CastleGrimtol.Game
             }
         }
 
-        public void Lose()
+        public void End()
         {
             Console.WriteLine("Would you like to quit? Y/N");
             string input = Console.ReadLine().ToLower();
