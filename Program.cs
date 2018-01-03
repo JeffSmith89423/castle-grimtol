@@ -27,6 +27,7 @@ namespace CastleGrimtol
                 if (game.CurrentRoom.Name == "LOSER!!!, ")
                 {
                     game.End();
+                    
                 }
                 if (game.CurrentRoom.Name == "YOU WIN!!, ")
                 {
@@ -67,7 +68,7 @@ namespace CastleGrimtol
                 else
                 {
 
-                    System.Console.WriteLine("Nope, you're dumb!!");
+                    System.Console.WriteLine("Poor Choice");
 
                 }
 

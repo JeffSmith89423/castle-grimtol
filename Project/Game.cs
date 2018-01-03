@@ -72,15 +72,14 @@ namespace CastleGrimtol.Game
             Console.WriteLine(@"Enter any of the following commands to proceed:
              Look,
              Take,
-             E, 
-             W,
+             Inventory,
+             N, S, E, W,
              Reset,
              Quit");
         }
         public void Look(Room room)
         {
             Console.WriteLine($"{room.Name}{room.Description}");
-
         }
         public void BuildRooms()
         {
@@ -89,13 +88,11 @@ namespace CastleGrimtol.Game
             Room roomThree = new Room("Room 3 ", "This is the third room, there are doors to the east and west");
             Room roomFour = new Room("Room 4 ", "This is the fourth room, there are doors to the east and west");
             Room roomFive = new Room("Room 5 ", "This is the fifth room, there is a door to the east north and south choose wisely");
-            Room roomSix = new Room("LOSER!!!, ", "This is a bottomless pit, you  die after starving in eternal free fall!!");
+            Room roomSix = new Room("LOSER!!!, ", "This is a bottomless pit, you will die after starving in eternal free fall!!");
             Room roomSeven = new Room("YOU WIN!!, ", "This is the exit to the world's lamest maze!");
-
 
             AddRooms();
             BuildExits();
-
 
             void AddRooms()
             {
@@ -119,11 +116,15 @@ namespace CastleGrimtol.Game
                 roomFive.AddDoor("e", roomFour);
                 roomFive.AddDoor("n", roomSix);
                 roomFive.AddDoor("s", roomSeven);
-
-
             }
             CurrentRoom = roomOne;
+
         }
+        public void TakeItem()
+        {
+            
+        }
+      
 
     }
 }
