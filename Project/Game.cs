@@ -81,9 +81,20 @@ namespace CastleGrimtol.Game
         {
             Console.WriteLine($"{room.Name}{room.Description}");
         }
+          public void TakeItem(string itemName)
+    {
+      Item item = CurrentRoom.Items.Find(Item => Item.Name.ToLower() == itemName);
+      if (item != null)
+      {
+        CurrentRoom.Items.Remove(item);
+        CurrentPlayer.Inventory.Add(item);
+        CurrentPlayer.ShowInventory(CurrentPlayer);
+      }
+    }
+
         public void BuildRooms()
         {
-            Room roomOne = new Room("Room 1 ", "You start out here, there is a door to the west");
+            Room roomOne = new Room("Room 1 ", "You start out here, you see a mirror on the floor and there is a door to the west");
             Room roomTwo = new Room("Room 2 ", "This is the second room, there are doors to the east and west");
             Room roomThree = new Room("Room 3 ", "This is the third room, there are doors to the east and west");
             Room roomFour = new Room("Room 4 ", "This is the fourth room, there are doors to the east and west");
@@ -93,6 +104,7 @@ namespace CastleGrimtol.Game
 
             AddRooms();
             BuildExits();
+            MakeItem();
 
             void AddRooms()
             {
@@ -117,14 +129,16 @@ namespace CastleGrimtol.Game
                 roomFive.AddDoor("n", roomSix);
                 roomFive.AddDoor("s", roomSeven);
             }
+            void MakeItem()
+            {
+                Item mirror = new Item("Mirror", "You look at yourself and reflect on your life decisions.");
+                roomOne.Items.Add(mirror);
+            }
             CurrentRoom = roomOne;
 
         }
-        public void TakeItem()
-        {
-            
-        }
-      
+
+
 
     }
 }
