@@ -18,26 +18,43 @@ namespace CastleGrimtol.Game
             Help();
         }
         public string GetUserInput()
-    {
-      System.Console.WriteLine("What would you like to do?\n");
-      string input = Console.ReadLine();
-      return input;
-    }
-     public Boolean Quit(Boolean playing)
-    {
-      System.Console.WriteLine("Are you Sure?");
-      string input = Console.ReadLine().ToLower();
-      if (input == "y" || input == "yes")
-      {
-        return playing = false;
-      }
-      else
-      {
-        System.Console.WriteLine("OK");
-        return playing = true;
-      }
-    }
-    
+        {
+            System.Console.WriteLine("What would you like to do?\n");
+            string input = Console.ReadLine();
+            return input;
+        }
+        public Boolean Quit(Boolean playing)
+        {
+            System.Console.WriteLine("Are you Sure?");
+            string input = Console.ReadLine().ToLower();
+            if (input == "y" || input == "yes")
+            {
+                return playing = false;
+            }
+            else
+            {
+                System.Console.WriteLine("OK");
+                return playing = true;
+            }
+        }
+
+        public void Lose()
+        {
+            Console.WriteLine("Would you like to quit? Y/N");
+            string input = Console.ReadLine().ToLower();
+            if (input == "y" || input == "yes")
+            {
+                Playing = false;
+            }
+            else
+            {
+                System.Console.WriteLine("OK");
+                
+
+            }
+
+        }
+
         public void Reset()
         {
             Playing = true;
@@ -63,14 +80,18 @@ namespace CastleGrimtol.Game
         public void Look(Room room)
         {
             Console.WriteLine($"{room.Name}{room.Description}");
+
         }
         public void BuildRooms()
         {
-            Room roomOne = new Room("Room 1 ", "you start out here, there is a door to the west");
-            Room roomTwo = new Room("Room 2 ", "this is the second room, there are doors to the east and west");
-            Room roomThree = new Room("Room 3 ", "this is the third room, there are doors to the east and west");
-            Room roomFour = new Room("Room 4 ", "this is the fourth room, there are doors to the east and west");
-            Room roomFive = new Room("Room 5 ", "this is the fifth room, there is a door to the east");
+            Room roomOne = new Room("Room 1 ", "You start out here, there is a door to the west");
+            Room roomTwo = new Room("Room 2 ", "This is the second room, there are doors to the east and west");
+            Room roomThree = new Room("Room 3 ", "This is the third room, there are doors to the east and west");
+            Room roomFour = new Room("Room 4 ", "This is the fourth room, there are doors to the east and west");
+            Room roomFive = new Room("Room 5 ", "This is the fifth room, there is a door to the east north and south choose wisely");
+            Room roomSix = new Room("Certain Death, ", "This is a bottomless pit, you  die after starving in eternal free fall!!");
+            Room roomSeven = new Room("Freedom, ", "This is the exit to the world's lamest maze, you win!");
+
 
             AddRooms();
             BuildExits();
@@ -83,6 +104,8 @@ namespace CastleGrimtol.Game
                 Rooms.Add(roomThree);
                 Rooms.Add(roomFour);
                 Rooms.Add(roomFive);
+                Rooms.Add(roomSix);
+                Rooms.Add(roomSeven);
             }
             void BuildExits()
             {
@@ -94,6 +117,8 @@ namespace CastleGrimtol.Game
                 roomFour.AddDoor("e", roomThree);
                 roomFour.AddDoor("w", roomFive);
                 roomFive.AddDoor("e", roomFour);
+                roomFive.AddDoor("n", roomSix);
+                roomFive.AddDoor("s", roomSeven);
 
 
             }
