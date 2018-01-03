@@ -57,6 +57,7 @@ namespace CastleGrimtol.Game
              Take,
              E, 
              W,
+             Reset,
              Quit");
         }
         public void Look(Room room)

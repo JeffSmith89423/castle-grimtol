@@ -45,6 +45,11 @@ namespace CastleGrimtol
           game.UseItem(userAction[1]);
           game.Look(game.CurrentRoom);
         }
+        else if (userAction[0] == "r" || userAction[0] == "reset")
+        {
+          game.Reset();
+          
+        }
         else if (nextRoom != null)
         {
           game.CurrentRoom = nextRoom;
