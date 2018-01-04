@@ -27,7 +27,7 @@ namespace CastleGrimtol.Game
             {
                 
                 System.Console.WriteLine($"{player.Inventory[i].Name}");
-                System.Console.WriteLine($"{player.Inventory[i].Description}");
+                
             }
         }
     }

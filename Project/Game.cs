@@ -25,17 +25,11 @@ namespace CastleGrimtol.Game
         }
         public Boolean Quit(Boolean playing)
         {
-            System.Console.WriteLine("Are you Sure?");
-            string input = Console.ReadLine().ToLower();
-            if (input == "y" || input == "yes")
+           
             {
                 return playing = false;
             }
-            else
-            {
-                System.Console.WriteLine("OK");
-                return playing = true;
-            }
+           
         }
 
         public void End()
@@ -62,16 +56,13 @@ namespace CastleGrimtol.Game
             BuildRooms();
         }
 
-        public void UseItem(string itemName)
-        {
 
-        }
 
         public void Help()
         {
             Console.WriteLine(@"Enter any of the following commands to proceed:
              Look,
-             Take,
+             Take (enter name of object),
              Inventory,
              N, S, E, W,
              Reset,
@@ -80,27 +71,43 @@ namespace CastleGrimtol.Game
         public void Look(Room room)
         {
             Console.WriteLine($"{room.Name}{room.Description}");
+            for (int i = 0; i < room.Items.Count; i++)
+            {
+                Console.WriteLine($"Takeable items in room: {room.Items[i].Name} Description: {room.Items[i].Description}");
+            }
         }
-          public void TakeItem(string itemName)
-    {
-      Item item = CurrentRoom.Items.Find(Item => Item.Name.ToLower() == itemName);
-      if (item != null)
-      {
-        CurrentRoom.Items.Remove(item);
-        CurrentPlayer.Inventory.Add(item);
-        CurrentPlayer.ShowInventory(CurrentPlayer);
-      }
-    }
+        public void TakeItem(string itemName)
+        {
+            Item item = CurrentRoom.Items.Find(Item => Item.Name.ToLower() == itemName);
+            if (item != null)
+            {
+                CurrentRoom.Items.Remove(item);
+                CurrentPlayer.Inventory.Add(item);
+                CurrentPlayer.ShowInventory(CurrentPlayer);
+            }
+        }
+        public void UseItem(string itemName)
+        {
+            Item item = CurrentPlayer.Inventory.Find(Item => Item.Name.ToLower() == itemName);
+            if (itemName != null)
+            {
+                System.Console.WriteLine("As the needle tears the flesh you feel a sharp piercing pain that begins to spread throughout your whole body. the room begins to spin and then everything goes dark.");
+
+                CurrentRoom = Rooms[6];
+
+            }
+        }
 
         public void BuildRooms()
         {
-            Room roomOne = new Room("Room 1 ", "You start out here, you see a mirror on the floor and there is a door to the west");
-            Room roomTwo = new Room("Room 2 ", "This is the second room, there are doors to the east and west");
-            Room roomThree = new Room("Room 3 ", "This is the third room, there are doors to the east and west");
-            Room roomFour = new Room("Room 4 ", "This is the fourth room, there are doors to the east and west");
-            Room roomFive = new Room("Room 5 ", "This is the fifth room, there is a door to the east north and south choose wisely");
+            Room roomOne = new Room("Room 1 ", "Your journey starts here,  there is a door to the west and broken bottles strewn about");
+            Room roomTwo = new Room("Room 2 ", "There was some type of party in this room exits are to the east and west");
+            Room roomThree = new Room("Room 3 ", "Two dead party goers in this room and several empty prescription bottles, there are doors to the east and west");
+            Room roomFour = new Room("Room 4 ", "This room is supprisingly clean and sterile, there are doors to the east and west");
+            Room roomFive = new Room("Room 5 ", "Someone has scrawled the word poison into the east wall in BLOOD, there is a door to the East, North, and South choose wisely");
             Room roomSix = new Room("LOSER!!!, ", "This is a bottomless pit, you will die after starving in eternal free fall!!");
-            Room roomSeven = new Room("YOU WIN!!, ", "This is the exit to the world's lamest maze!");
+            Room roomSeven = new Room("YOU WIN!!, ", "You wake in your bed up and realize it was all a dream. Don't do drugs kids!!!");
+            Room roomEight = new Room("LOSER!!!, ", "You just walked in on two lucha libre midget wrestlers who promptly beat you to death");
 
             AddRooms();
             BuildExits();
@@ -115,6 +122,7 @@ namespace CastleGrimtol.Game
                 Rooms.Add(roomFive);
                 Rooms.Add(roomSix);
                 Rooms.Add(roomSeven);
+                Rooms.Add(roomEight);
             }
             void BuildExits()
             {
@@ -127,12 +135,14 @@ namespace CastleGrimtol.Game
                 roomFour.AddDoor("w", roomFive);
                 roomFive.AddDoor("e", roomFour);
                 roomFive.AddDoor("n", roomSix);
-                roomFive.AddDoor("s", roomSeven);
+                roomFive.AddDoor("s", roomEight);
             }
             void MakeItem()
             {
-                Item mirror = new Item("Mirror", "You look at yourself and reflect on your life decisions.");
-                roomOne.Items.Add(mirror);
+                Item syringe = new Item("Syringe", "An ominous looking greenish fluid glows within this dull, bent and obviously used Syringe");
+                roomFive.Items.Add(syringe);
+                // Item bottle = new Item("Bottle", "Its empty and likely useless");
+                // roomFour.Items.Add(bottle);
             }
             CurrentRoom = roomOne;
 
